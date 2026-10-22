@@ -1,19 +1,19 @@
 # Body Type Clustering - National Health and Nutrition Examination Survey (NHANES) Dataset.
 
-Discovering natural body type categories in 52,344 U.S. adults using K - Means clustering on physical measurements.
+Discovering natural body type categories in 51,605 U.S. adults using K-Means clustering on physical measurements.
 
 ## Overview.
 
-The idea was to make a model that predicts Body type through physical measurements. This project tests wether **unsupervised machine learning can discover natural body type categories** from real physical measurements.
+The idea was to make a model that predicts Body type through physical measurements. This project tests whether **unsupervised machine learning can discover natural body type categories** from real physical measurements.
 
-Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 52,344 adult records across 7 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
+Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 52,605 adult records across 7 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
 
 **Why this matters?:** We can use this model **Body Type Classification** in fit finder to provide size recommendations across a broad range of Body Types.
 
 ## Dataset
 
 **Source:** [NHANES Body Measures (BMX)] (https://wwwn.cdc.gov/nchs/nhanes/default.aspx)
-- CDC National Health and Nutrition Examination Survey.
+- CDC's National Health and Nutrition Examination Survey.
 
 **Cycles:** 1999 - 2002, 2011 - 2023 (7 combined cycles).
 **Raw Size:** 66,018 records * 50 columns.
@@ -22,27 +22,28 @@ Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "
 **Features used:**
 |Feature                 |Description                               |
 |          ---           |                 ---                      |
-| Height_cm              |Standing Height in centi meters.          |
+| Height_cm              |Standing Height in centimeters.          |
 | Weight_kg              |Body weight in kilograms.                 |
 | BMI_kg_m2              |Body Mass Index (kg/m2).                  |
-| Waist_Circumference_cm |Waist Circumference in centi meters.      |
-| Arm_Circumference_cm   |Mid - Arm Circumference in centi meters.  |
-| Arm_Length_cm          |Upper - Arm Length in centi meters.       |
-| UpperLeg_Length_cm     |Upper Leg Length in centi meters.         |
+| Waist_Circumference_cm |Waist Circumference in centimeters.      |
+| Arm_Circumference_cm   |Mid - Arm Circumference in centimeters.  |
+| Arm_Length_cm          |Upper - Arm Length in centimeters.       |
+| UpperLeg_Length_cm     |Upper Leg Length in centimeters.         |
 
 ## Approach
 
 ### 1. Data Collection.
-Finding high-quality data was the first major challenge. There are many other datasets but they all are synthetic. I also go with Data Scraping but the problem is that scraped data have so many null values so, I decided to get data from National Health and Nutrition Examination Survey.
+Finding high-quality data was the first major challenge. There are many other datasets but they are all synthetic. I also considered Data Scraping but the problem is that scraped data has too many null values, so I decided to get data from National Health and Nutrition Examination Survey.
 
 ### 2. Data Cleaning.
-After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) dataset, i started cleaning dataset.
-- I see basic structure of Dataset and rename columns to understandable variables.
-- Dropped non - biological columns - comment columns, admin columns, bp columns, sad raw columns and id columns.
-- Dropped 9 more columns containg missing values more than 50%.
-- Applied **K - Nearest Neighbours Imputation** (k= 5) to preserve feature relationship - filled 15% missing data while keeping all 66,018 records.
-- filter data to Adults only - removed 13,674 children.
+After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) dataset, I started cleaning the dataset.
+- I see basic structure of Dataset and renamed columns to understandable variables.
+- Dropped non-biological columns (comment columns, admin columns, bp columns, sad raw columns and id columns).
+- Dropped 9 more columns containing missing values more than 50%.
+- Applied **K - Nearest Neighbours Imputation** (k= 5) to preserve feature relationship and imputed 15% missing data while keeping all 66,018 records before filtering.
+- filtered data to Adults only - removed 13,674 children.
 - Removed 41 rows with inconsistent BMI records and 698 duplicates.
+- final cleaned size 51,605.
 
 ### 3. Correlation Analysis.
 - Computed pairwise correlations to detect redundant features.
@@ -50,7 +51,7 @@ After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) da
 
 ### 4. Clustering.
 - **StandardScaler** normalized features (K-means is distance-based).
-- Determined optimal K using **Elbow Method** and **Silhoutte Score** (K = 4 found optimal).
+- Determined optimal K using **Elbow Method** and **Silhouette Score** (K = 4 found optimal).
 
 ### 5. Cluster Interpretation.
 - Analyzed per-cluster feature means.
@@ -69,6 +70,7 @@ After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) da
 | Petite | 9,917 | 19.2% | 148.8 cm | 77.5 cm |
 
 ### Clustering Quality
+
 - **Silhouette Score (K=4):** 0.277
 - **Interpretation:** Moderate cluster separation — consistent 
   with body composition existing on a continuous spectrum rather 
