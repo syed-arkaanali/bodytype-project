@@ -101,7 +101,7 @@ After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) da
    predictions scramble between runs.
 
 ## Project Structure.
-
+```text
 bodytype-project/
 ├── README.md
 ├── requirements.txt
@@ -113,7 +113,7 @@ bodytype-project/
 └── data/
     ├── nhanes_bmx_data.csv
     └── nhanes_bodytypes.csv
-
+```
 ## How to Use?
 
 ### Install dependencies.
