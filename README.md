@@ -6,7 +6,7 @@ Discovering natural body type categories in 51,605 U.S. adults using K-Means clu
 
 The idea was to make a model that predicts Body type through physical measurements. This project tests whether **unsupervised machine learning can discover natural body type categories** from real physical measurements.
 
-Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 52,605 adult records across 7 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
+Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 51,605 adult records across 7 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
 
 **Why this matters?:** We can use this model **Body Type Classification** in fit finder to provide size recommendations across a broad range of Body Types.
 
@@ -89,8 +89,7 @@ After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) da
    between their means.
 
 2. **Waist circumference is a powerful body-size proxy.** It correlates 
-   0.91 with BMI — meaning **waist measurement alone captures 91%** 
-   of the information needed for size classification.
+   0.91 with BMI — meaning **waist measurement alone accounts for 83% of the variance (r2 = 0.83)** in body size, making it highly effective for size classification.
 
 3. **Body types form a continuous spectrum, not discrete groups.** 
    Silhouette scores (0.28) confirm that body composition doesn't 
@@ -103,23 +102,21 @@ After combining all 7 datasets excluding 2017-March 2020 pre-pandemic (P_BMX) da
 
 ## Project Structure.
 
-bodytype project/
+bodytype-project/
 ├── README.md
-├── project_bodytype.ipynb     # Main notebook
+├── requirements.txt
+├── project_bodytype.ipynb
 ├── body_type_visualization.png
 ├── models/
-│   ├── bodytype_scaler.pkl        # Fitted StandardScaler
-│   ├── bodytype_kmeans.pkl        # Trained K-Means model
-│   └── bodytype_labels.pkl        # Cluster ID → body type mapping
-├── data/
-│   └── nhanes_data
-|   └── nhanes_bmx_data.csv
-|   └── nhanes_bodytypes.csv
-└── requirements.txt
+│   ├── bodytype_pipeline.pkl
+│   └── bodytype_labels.pkl
+└── data/
+    ├── nhanes_bmx_data.csv
+    └── nhanes_bodytypes.csv
 
 ## How to Use?
 
-### Install dipendencies.
+### Install dependencies.
 ```bash
 pip install -r requirements.txt
 
