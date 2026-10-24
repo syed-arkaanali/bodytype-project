@@ -6,7 +6,7 @@ Discovering natural body type categories in 51,605 U.S. adults using K-Means clu
 
 The idea was to make a model that predicts Body type through physical measurements. This project tests whether **unsupervised machine learning can discover natural body type categories** from real physical measurements.
 
-Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 51,605 adult records across 7 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
+Using CDC's National Health and Nutrition Examination Survey (NHANES) Dataset: "https://wwwn.cdc.gov/nchs/nhanes/default.aspx", I applied K - means clustering 51,605 adult records across 4 physical measurements. The algorithm identified **4 distinct Body Types** - Petite, Average, Broad and Tall.
 
 **Why this matters?:** We can use this model **Body Type Classification** in fit finder to provide size recommendations across a broad range of Body Types.
 
